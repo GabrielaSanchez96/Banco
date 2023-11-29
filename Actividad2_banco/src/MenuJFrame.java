@@ -117,6 +117,26 @@ public class MenuJFrame extends javax.swing.JFrame {
 
     private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
         // TODO add your handling code here:
+        String o = jtxtfOpcion.getText();
+        int opcion = Integer.parseInt(o);
+        
+        switch(opcion){
+            case 1:
+                DepositoJFrame deposito = new DepositoJFrame();
+                deposito.show();
+                break;
+            case 2:
+                RetiroJFrame retiro = new RetiroJFrame();
+                retiro.show();
+                break;
+            case 3:
+                SaldoJFrame saldo = new SaldoJFrame();
+                saldo.show();
+                break;
+            case 4:
+                this.dispose();
+                break;
+        }
     }//GEN-LAST:event_jbtnAceptarActionPerformed
 
     /**
