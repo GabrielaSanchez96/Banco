@@ -1,3 +1,8 @@
+
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -27,8 +32,8 @@ public class DepositoJFrame extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jtxtfCantidad = new javax.swing.JTextField();
+        jbtnDepositar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -36,12 +41,10 @@ public class DepositoJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Cantidad a depositar:");
 
-        jTextField1.setText("$");
-
-        jButton1.setText("Depositar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnDepositar.setText("Depositar");
+        jbtnDepositar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnDepositarActionPerformed(evt);
             }
         });
 
@@ -58,11 +61,11 @@ public class DepositoJFrame extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtxtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbtnDepositar)
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -73,18 +76,39 @@ public class DepositoJFrame extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtxtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbtnDepositar)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDepositarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Connection con;
+        conexion conn = new conexion();
+        try{
+            String query = "UPDATE cuenta SET saldo=saldo + ? WHERE id = 1";
+            con = conn.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, jtxtfCantidad.getText());
+            
+            int res = ps.executeUpdate();
+            
+            if (res > 0){
+                JOptionPane.showMessageDialog(null, "Deposito exitoso");
+            } else{
+                JOptionPane.showMessageDialog(null, "Error al depositar");
+            }
+            
+            con.close();
+            
+        } catch(Exception e){
+            System.err.println(e);
+        }
+    }//GEN-LAST:event_jbtnDepositarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,9 +146,9 @@ public class DepositoJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbtnDepositar;
+    private javax.swing.JTextField jtxtfCantidad;
     // End of variables declaration//GEN-END:variables
 }
