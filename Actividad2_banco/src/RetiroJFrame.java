@@ -36,7 +36,6 @@ public class RetiroJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Monto:");
 
-        jTextField1.setText("$");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
