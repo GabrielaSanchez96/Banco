@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -36,6 +39,7 @@ public class MenuJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Banco Mexicano");
 
         jLabel2.setText("1.- Depósito");
@@ -66,7 +70,7 @@ public class MenuJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(151, 151, 151))
             .addGroup(layout.createSequentialGroup()
@@ -105,7 +109,7 @@ public class MenuJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(jtxtfOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnAceptar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -117,26 +121,35 @@ public class MenuJFrame extends javax.swing.JFrame {
 
     private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
         // TODO add your handling code here:
-        String o = jtxtfOpcion.getText();
-        int opcion = Integer.parseInt(o);
+        try{
+            String o = jtxtfOpcion.getText();
+            int opcion = Integer.parseInt(o);
         
-        switch(opcion){
-            case 1:
-                DepositoJFrame deposito = new DepositoJFrame();
-                deposito.show();
-                break;
-            case 2:
-                RetiroJFrame retiro = new RetiroJFrame();
-                retiro.show();
-                break;
-            case 3:
-                SaldoJFrame saldo = new SaldoJFrame();
-                saldo.show();
-                break;
-            case 4:
-                this.dispose();
-                break;
+            switch(opcion){
+                case 1:
+                    DepositoJFrame deposito = new DepositoJFrame();
+                    deposito.show();
+                    break;
+                case 2:
+                    RetiroJFrame retiro = new RetiroJFrame();
+                    retiro.show();
+                    break;
+                case 3:
+                    SaldoJFrame saldo = new SaldoJFrame();
+                    saldo.show();
+                    break;
+                case 4:
+                    this.dispose();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opcion no válida");
+                    break;
+            }
+            jtxtfOpcion.setText("");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error " + e);
         }
+        
     }//GEN-LAST:event_jbtnAceptarActionPerformed
 
     /**

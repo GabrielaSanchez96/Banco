@@ -37,6 +37,7 @@ public class DepositoJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Depósito");
 
         jLabel2.setText("Cantidad a depositar:");
@@ -79,7 +80,7 @@ public class DepositoJFrame extends javax.swing.JFrame {
                 .addComponent(jtxtfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnDepositar)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +103,8 @@ public class DepositoJFrame extends javax.swing.JFrame {
             } else{
                 JOptionPane.showMessageDialog(null, "Error al depositar");
             }
+            
+            jtxtfCantidad.setText("");
             
             con.close();
             
